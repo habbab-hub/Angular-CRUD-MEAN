@@ -1,0 +1,44 @@
+<div class="border p-6 max-w-5xl mx-auto rounded-xl shadow border-gray-300">
+  <div class="border-b pb-2 flex justify-between mb-4">
+    <h2 class="text-2xl font-semibold text-gray-800">User Data</h2>
+    <button class="bg-amber-300 p-3 rounded-2xl" routerLink="/users/add">
+      Add User
+    </button>
+  </div>
+
+  <div class="overflow-x-auto border border-gray-300 rounded-lg shadow-sm">
+    <table class="min-w-full table-auto text-sm text-left text-gray-700">
+      <thead class="bg-gray-100 text-gray-800 border-b border-gray-300">
+        <tr>
+          <th class="px-4 py-3 border-r">Name</th>
+          <th class="px-4 py-3 border-r">Email</th>
+          <th class="px-4 py-3 border-r">Age</th>
+          <th class="px-4 py-3 border-r">Address</th>
+          <th class="px-4 py-3">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for(user of users; track $index){
+        <tr class="border-b border-gray-200 hover:bg-gray-50">
+          <th class="px-4 py-3 border-r">{{ user.name }}</th>
+          <th class="px-4 py-3 border-r">{{ user.email }}</th>
+          <th class="px-4 py-3 border-r">{{ user.age }}</th>
+          <th class="px-4 py-3 border-r">{{ user.address }}</th>
+          <th>
+            <button
+              class="bg-green-500 text-white p-3 m-2 rounded-2xl"
+              [routerLink]="'/users/' + user._id"
+            >
+              Edit User
+            </button>
+            <button class="bg-red-500 text-white p-3 m-2 rounded-2xl" (click)="delete(user._id!)">
+              Delete User
+            </button>
+          </th>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
